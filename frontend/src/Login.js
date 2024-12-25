@@ -65,9 +65,12 @@ function Login() {
             />
             {errors.password && <span className="text-danger">{errors.password}</span>}
           </div>
-          <button type="submit" className="btn btn-success w-100 rounded-0">
-            <strong>Log in</strong>
-          </button>
+          <Link
+            to="/Home"
+            className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
+          >
+            <strong>Login</strong>
+          </Link>
           <p>You are agreed to our terms and conditions</p>
           <Link
             to="/signup"

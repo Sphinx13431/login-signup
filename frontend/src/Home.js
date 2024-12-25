@@ -1,11 +1,87 @@
-import React from 'react'
+import './Home.css'
+import video from './assets/video.mp4';
+import image1 from './assets/bg1.png';
+import image2 from './assets/bg2.png';
+import image3 from './assets/bg3.png';
+import arrow_btn from './assets/arrow_btn.png';
+import play_icon from './assets/play_icon.png';
+import pause_icon from './assets/pause_icon.png';
+import { Link } from 'react-router-dom';
 
-function Home() {
+const Navbar = () => {
+  return (
+    <div className='nav'>
+      <div className='nav logo'>ML-test</div>
+      <ul className='nav-menu'>
+      <li><Link to="/home">Home</Link></li>
+      <li><Link to="/profile">Profile</Link></li>
+      <li><Link to="./">Log Out</Link></li>
+      <li className='nav-test'><Link to="/test">Test</Link></li>
+
+      </ul>
+    </div>
+  );
+};
+
+const Background = ({ playStatus, heroCount }) => {
+  if (playStatus) {
+    return (
+      <video className='background' autoPlay loop muted>
+        <source src={video} type='video/mp4' />
+      </video>
+    );
+  } else if (heroCount === 0) {
+    return <img src={image1} className='background' alt='' />;
+  } else if (heroCount === 1) {
+    return <img src={image2} className='background' alt='' />;
+  } else if (heroCount === 2) {
+    return <img src={image3} className='background' alt='' />;
+  }
+};
+
+const Hero = ({ heroCount, heroData, setHeroCount, setPlayStatus, playStatus }) => {
+  return (
+    <div className='hero'>
+      <div className='hero-text'>
+        <p>{heroData.text1}</p>
+        <p>{heroData.text2}</p>
+      </div>
+      <div className="hero-explore">
+        <p>Explore the features</p>
+        <img src={arrow_btn} alt='Explore Features' />
+      </div>
+      <div className="hero-dot-play"></div>
+      <ul className="hero-dots">
+        <li onClick={() => setHeroCount(0)} className={heroCount === 0 ? "hero-dot orange" : "hero-dot"}></li>
+        <li onClick={() => setHeroCount(1)} className={heroCount === 1 ? "hero-dot orange" : "hero-dot"}></li>
+        <li onClick={() => setHeroCount(2)} className={heroCount === 2 ? "hero-dot orange" : "hero-dot"}></li>
+      </ul>
+      <div className="hero-play">
+        <img 
+          onClick={() => setPlayStatus(!playStatus)} 
+          src={playStatus ? pause_icon : play_icon} 
+          alt=''
+        />
+        <p>See the video</p>
+      </div>
+    </div>
+  );
+};
+
+const Home = ({ heroCount, heroData, setHeroCount, setPlayStatus, playStatus }) => {
   return (
     <div>
-      Home
+      <Navbar />
+      <Background playStatus={playStatus} heroCount={heroCount} />
+      <Hero 
+        heroCount={heroCount} 
+        heroData={heroData} 
+        setHeroCount={setHeroCount} 
+        setPlayStatus={setPlayStatus} 
+        playStatus={playStatus} 
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
