@@ -6,18 +6,42 @@ import image3 from './assets/bg3.png';
 import arrow_btn from './assets/arrow_btn.png';
 import play_icon from './assets/play_icon.png';
 import pause_icon from './assets/pause_icon.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/api/logout/', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      const data = await response.json();
+      if (data.status === 'success') {
+        localStorage.clear();
+        sessionStorage.clear();
+        navigate('/', { replace: true });
+      } else {
+        throw new Error('Logout failed');
+      }
+    } catch (error) {
+      console.error('Logout failed:', error);
+      alert('Logout failed. Please try again.');
+    }
+  };
+
   return (
     <div className='nav'>
       <div className='nav logo'>ML-test</div>
       <ul className='nav-menu'>
-      <li><Link to="/home">Home</Link></li>
-      <li><Link to="/profile">Profile</Link></li>
-      <li><Link to="./">Log Out</Link></li>
-      <li className='nav-test'><Link to="/test">Test</Link></li>
-
+        <li><Link to="/home">Home</Link></li>
+        <li><Link to="/profile">Profile</Link></li>
+        <li><button onClick={handleLogout}>Log Out</button></li>
+        <li className='nav-test'><Link to="/test">Test</Link></li>
       </ul>
     </div>
   );
@@ -83,5 +107,6 @@ const Home = ({ heroCount, heroData, setHeroCount, setPlayStatus, playStatus }) 
     </div>
   );
 };
+
 
 export default Home;

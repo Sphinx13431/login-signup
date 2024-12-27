@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import validation from './SignupValidation';
-import axios from 'axios'
+
 
 function Signup() {
   const [values, setValues] = useState({
@@ -23,15 +23,37 @@ function Signup() {
   };
 
   // Handle form submission
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setErrors(validation(values));
-    if(errors.name ==="" && errors.email===""&&errors.password===""){
-        axios.post('http://localhost:8081/signup',values)
-        .then(res=>{
-            navigate('/')
-        })
-        .catch(err =>console.log(err));
+    if(errors.name === "" && errors.email === "" && errors.password === "") {
+      try {
+        // First get CSRF token
+        const tokenResponse = await fetch('http://localhost:8000/api/csrf-token/', {
+          credentials: 'include',
+        });
+        const { csrfToken } = await tokenResponse.json();
+        
+        // Then make signup request
+        const response = await fetch('http://localhost:8000/api/signup/', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+          },
+          body: JSON.stringify(values)
+        });
+        const data = await response.json();
+        if (data.status === 'success') {
+          navigate('/');
+        } else {
+          throw new Error(data.message || 'Signup failed');
+        }
+      } catch (err) {
+        console.error('Signup failed:', err);
+        alert("Signup failed. Please try again.");
+      }
     }
   };
 

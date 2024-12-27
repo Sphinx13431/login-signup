@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import validation from './LoginValidation';
-import axios from 'axios';
 
 function Login() {
   const [values, setValues] = useState({
@@ -21,20 +20,28 @@ function Login() {
   };
 
   // Handle form submission
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setErrors(validation(values));
-    if(errors.name ==="" && errors.email==="" ){
-        axios.post('http://localhost:8081/login',values)
-        .then(res=>{
-            if(res.data === "Success"){
-                navigate('/home');
-            }
-            else{
-                alert("No record existed");
-            }
-        })
-        .catch(err =>console.log(err));
+    if (errors.email === "" && errors.password === "") {
+      try {
+        const response = await fetch('http://localhost:8000/api/login/', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values)
+        });
+        const data = await response.json();
+        if (data.status === 'Success') {
+          navigate('/home');
+        } else {
+          alert("Invalid credentials");
+        }
+      } catch (err) {
+        alert("Login failed");
+      }
     }
   };
 
