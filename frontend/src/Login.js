@@ -58,6 +58,7 @@ function Login() {
               name="email"
               onChange={handleInput}
               className="form-control rounded-0"
+              autoComplete='off'
             />
             {errors.email && <span className="text-danger">{errors.email}</span>}
           </div>
@@ -69,6 +70,7 @@ function Login() {
               name="password"
               onChange={handleInput}
               className="form-control rounded-0"
+              autoComplete='off'
             />
             {errors.password && <span className="text-danger">{errors.password}</span>}
           </div>

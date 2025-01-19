@@ -73,6 +73,7 @@ function Signup() {
               value={values.name}
               onChange={handleInput}
               className="form-control rounded-0"
+              autoComplete='off'
             />
             {errors.name && <span className="text-danger">{errors.name}</span>}
           </div>
@@ -87,6 +88,7 @@ function Signup() {
               value={values.email}
               onChange={handleInput}
               className="form-control rounded-0"
+              autoComplete='off'
             />
             {errors.email && <span className="text-danger">{errors.email}</span>}
           </div>
@@ -101,6 +103,7 @@ function Signup() {
               value={values.password}
               onChange={handleInput}
               className="form-control rounded-0"
+              autoComplete='off'
             />
             {errors.password && (
               <span className="text-danger">{errors.password}</span>
