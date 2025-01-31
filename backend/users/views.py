@@ -20,24 +20,67 @@ def api_root(request, format=None):
 def signup_view(request):
     data = request.data
     try:
+        # Check if user already exists
+        if User.objects.filter(email=data['email']).exists():
+            return Response(
+                {'status': 'error', 'message': 'Email already registered'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Validate required fields
+        required_fields = ['email', 'password', 'name']
+        for field in required_fields:
+            if not data.get(field):
+                return Response(
+                    {'status': 'error', 'message': f'{field} is required'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+        
+        # Create user
         user = User.objects.create_user(
             username=data['email'],
             email=data['email'],
             password=data['password'],
             first_name=data['name']
         )
-        return Response({'status': 'success'}, status=status.HTTP_201_CREATED)
+        
+        # Log the user in after signup
+        login(request, user)
+        
+        return Response({
+            'status': 'success',
+            'message': 'User created successfully'
+        }, status=status.HTTP_201_CREATED)
+        
     except Exception as e:
-        return Response({'status': 'error', 'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({
+            'status': 'error',
+            'message': str(e)
+        }, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST'])
+@api_view(['POST'])  # This is correct - only allowing POST method
 def login_view(request):
     data = request.data
-    user = authenticate(username=data['email'], password=data['password'])
-    if user is not None:
-        login(request, user)
-        return Response({'status': 'Success'})
-    return Response({'status': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+    try:
+        user = authenticate(username=data['email'], password=data['password'])
+        if user is not None:
+            login(request, user)
+            return Response({
+                'status': 'Success',
+                'user': {
+                    'email': user.email,
+                    'name': user.first_name
+                }
+            })
+        return Response(
+            {'status': 'error', 'message': 'Invalid credentials'}, 
+            status=status.HTTP_401_UNAUTHORIZED
+        )
+    except Exception as e:
+        return Response(
+            {'status': 'error', 'message': str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
 
 @api_view(['POST'])
 @ensure_csrf_cookie

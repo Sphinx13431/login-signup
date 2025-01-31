@@ -25,11 +25,18 @@ function Login() {
     setErrors(validation(values));
     if (errors.email === "" && errors.password === "") {
       try {
+        // First get CSRF token
+        const tokenResponse = await fetch('http://localhost:8000/api/csrf-token/', {
+          credentials: 'include',
+        });
+        const { csrfToken } = await tokenResponse.json();
+        
         const response = await fetch('http://localhost:8000/api/login/', {
           method: 'POST',
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
           },
           body: JSON.stringify(values)
         });
@@ -40,6 +47,7 @@ function Login() {
           alert("Invalid credentials");
         }
       } catch (err) {
+        console.error('Login failed:', err);
         alert("Login failed");
       }
     }
@@ -74,12 +82,12 @@ function Login() {
             />
             {errors.password && <span className="text-danger">{errors.password}</span>}
           </div>
-          <Link
-            to="/Home"
-            className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
+          <button 
+            type="submit" 
+            className="btn btn-primary w-100 rounded-0 mb-3"
           >
             <strong>Login</strong>
-          </Link>
+          </button>
           <p>You are agreed to our terms and conditions</p>
           <Link
             to="/signup"

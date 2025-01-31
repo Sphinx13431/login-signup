@@ -25,16 +25,17 @@ function Signup() {
   // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrors(validation(values));
-    if(errors.name === "" && errors.email === "" && errors.password === "") {
+    const validationErrors = validation(values);
+    setErrors(validationErrors);
+    
+    // Check if there are any validation errors
+    if(Object.keys(validationErrors).every(key => !validationErrors[key])) {
       try {
-        // First get CSRF token
         const tokenResponse = await fetch('http://localhost:8000/api/csrf-token/', {
           credentials: 'include',
         });
         const { csrfToken } = await tokenResponse.json();
         
-        // Then make signup request
         const response = await fetch('http://localhost:8000/api/signup/', {
           method: 'POST',
           credentials: 'include',
@@ -44,15 +45,17 @@ function Signup() {
           },
           body: JSON.stringify(values)
         });
+        
         const data = await response.json();
         if (data.status === 'success') {
+          alert('Signup successful!');
           navigate('/');
         } else {
-          throw new Error(data.message || 'Signup failed');
+          alert(data.message || 'Signup failed');
         }
       } catch (err) {
-        console.error('Signup failed:', err);
-        alert("Signup failed. Please try again.");
+        console.error('Signup error:', err);
+        alert(err.message || "Signup failed. Please try again.");
       }
     }
   };
