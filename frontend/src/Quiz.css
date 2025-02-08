@@ -1,0 +1,111 @@
+/* Import a Google Font for better typography */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.container {
+    width: 640px;
+    margin: auto;
+    margin-top: 150px;
+    background: white;
+    color: #262626;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 15px; /* Increased border-radius */
+    padding: 40px 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
+    font-family: 'Poppins', sans-serif; /* Modern font */
+}
+
+.container hr {
+    height: 2px;
+    border: none;
+    background: #707070;
+    opacity: 0.3; /* Subtle line */
+}
+
+.container h2 {
+    font-size: 27px;
+    font-weight: 600; /* Slightly bolder */
+    text-align: center;
+    color: #553f9a; /* Matching the button color */
+}
+
+.container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.container ul li {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding: 15px;
+    border: 1px solid #e0e0e0; /* Lighter border */
+    border-radius: 10px; /* Rounded corners */
+    margin-bottom: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition */
+    background: #f9f9f9; /* Light background */
+}
+
+.container ul li:hover {
+    background: #553f9a; /* Hover effect */
+    color: white;
+    border-color: #553f9a;
+    transform: translateY(-3px); /* Slight lift */
+    box-shadow: 0 5px 15px rgba(85, 63, 154, 0.3); /* Shadow on hover */
+}
+
+.container button {
+    margin: auto;
+    width: 250px;
+    height: 65px;
+    background: linear-gradient(135deg, #553f9a, #6a5acd); /* Gradient background */
+    color: #fff;
+    font-size: 25px;
+    font-weight: 500;
+    border-radius: 12px; /* More rounded */
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease; /* Smooth transition */
+    box-shadow: 0 5px 15px rgba(85, 63, 154, 0.3); /* Shadow */
+}
+
+.container button:hover {
+    background: linear-gradient(135deg, #6a5acd, #553f9a); /* Reverse gradient on hover */
+    transform: translateY(-3px); /* Slight lift */
+    box-shadow: 0 8px 20px rgba(85, 63, 154, 0.4); /* Larger shadow on hover */
+}
+
+.container .index {
+    margin: auto;
+    font-size: 18px;
+    color: #777; /* Subtle text color */
+}
+
+.container .red {
+    background: crimson;
+    border-color: crimson;
+}
+
+.container .green {
+    background: green;
+    border-color: green;
+}
+
+/* Optional: Add a subtle animation for the container */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    animation: fadeIn 0.5s ease-out; /* Fade-in animation */
+}

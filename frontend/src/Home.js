@@ -1,16 +1,16 @@
-import './Home.css'
+import React from 'react';
+import './Home.css';
 import video from './assets/video.mp4';
 import image1 from './assets/bg1.png';
 import image2 from './assets/bg2.png';
 import image3 from './assets/bg3.png';
-import arrow_btn from './assets/arrow_btn.png';
 import play_icon from './assets/play_icon.png';
 import pause_icon from './assets/pause_icon.png';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  
+
   const handleLogout = async () => {
     try {
       const response = await fetch('http://localhost:8000/api/logout/', {
@@ -38,10 +38,10 @@ const Navbar = () => {
     <div className='nav'>
       <div className='nav logo'>ML-test</div>
       <ul className='nav-menu'>
-        <li><Link to="/home">Home</Link></li>
-        <li><Link to="/profile">Profile</Link></li>
-        <li><button onClick={handleLogout}>Log Out</button></li>
-        <li className='nav-test'><Link to="/test">Test</Link></li>
+        <li className='nav-home'><Link to="/home">Home</Link></li>
+        <li className='nav-profile'><Link to="/profile">Profile</Link></li>
+        <li className='nav-logout'><button onClick={handleLogout}>Log Out</button></li>
+        <li className='nav-test'><Link to="/quiz">Test</Link></li>
       </ul>
     </div>
   );
@@ -72,7 +72,7 @@ const Hero = ({ heroCount, heroData, setHeroCount, setPlayStatus, playStatus }) 
       </div>
       <div className="hero-explore">
         <p>Explore the features</p>
-        <img src={arrow_btn} alt='Explore Features' />
+        
       </div>
       <div className="hero-dot-play"></div>
       <ul className="hero-dots">
@@ -94,19 +94,20 @@ const Hero = ({ heroCount, heroData, setHeroCount, setPlayStatus, playStatus }) 
 
 const Home = ({ heroCount, heroData, setHeroCount, setPlayStatus, playStatus }) => {
   return (
-    <div>
+    <div className="home-container">
       <Navbar />
-      <Background playStatus={playStatus} heroCount={heroCount} />
-      <Hero 
-        heroCount={heroCount} 
-        heroData={heroData} 
-        setHeroCount={setHeroCount} 
-        setPlayStatus={setPlayStatus} 
-        playStatus={playStatus} 
-      />
+      <div className="background-container">
+        <Background playStatus={playStatus} heroCount={heroCount} />
+        <Hero 
+          heroCount={heroCount} 
+          heroData={heroData} 
+          setHeroCount={setHeroCount} 
+          setPlayStatus={setPlayStatus} 
+          playStatus={playStatus} 
+        />
+      </div>
     </div>
   );
 };
-
 
 export default Home;
