@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from './Signup';
 import Home from './Home';
 import Quiz from './Quiz'; // Corrected import statement
+import TestPage from './TestPage';
+import Profile from "./Profile";
 
 function App() {
   const [heroCount, setHeroCount] = useState(0);
@@ -31,7 +33,9 @@ function App() {
             />
           } 
         />
-        <Route path='/quiz' element={<Quiz />} /> {/* Added Quiz route */}
+        <Route path='/quiz' element={<Quiz />} />
+        <Route path='/testpage' element={<TestPage />} /> 
+        <Route path="/profile" element={<Profile />} />{/* Added Quiz route */}
       </Routes>
     </BrowserRouter>
   );
