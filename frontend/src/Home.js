@@ -39,9 +39,9 @@ const Navbar = () => {
       <div className='nav logo'>ML-test</div>
       <ul className='nav-menu'>
         <li className='nav-home'><Link to="/home">Home</Link></li>
-        <li className='nav-profile'><Link to="/profile">Profile</Link></li>
+        <li className='nav-profile'><Link to="/Profile">Profile</Link></li>
         <li className='nav-logout'><button onClick={handleLogout}>Log Out</button></li>
-        <li className='nav-test'><Link to="/quiz">Test</Link></li>
+        <li className='nav-test'><Link to="/testpage">Test</Link></li>
       </ul>
     </div>
   );
