@@ -1,0 +1,234 @@
+//Page1
+**Dyslexia Screening Questionnaire**
+
+*(For Parents, Teachers, or Self-Assessment for Older Individuals)*
+
+This questionnaire helps identify potential signs of dyslexia. It is not
+a diagnostic tool but can indicate whether further assessment by a
+specialist is necessary.
+
+**Section 1: General Information**
+
+-   Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+-   Age: \_\_\_\_\_\_\_\_\_\_\_
+
+-   Grade/Occupation: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+-   Date: \_\_\_\_\_\_\_\_\_\_\_
+
+**Section 2: Early Childhood Development *(For parents/guardians of
+young children)***
+
+1.  Did the individual have delayed speech development (e.g., first
+    words after 18 months)? **(Yes/No)**
+
+2.  Were there difficulties learning nursery rhymes or songs?
+    **(Yes/No)**
+
+3.  Did they struggle with recognizing letters, numbers, or colors at an
+    early age? **(Yes/No)**
+
+4.  Did they have trouble remembering sequences (e.g., days of the week,
+    the alphabet)? **(Yes/No)**
+
+**Section 3: Reading Skills**
+
+5.  Does the individual confuse similar-looking letters (e.g., \"b\" and
+    \"d\", \"p\" and \"q\")? **(Yes/No)**
+
+6.  Do they have difficulty sounding out unfamiliar words? **(Yes/No)**
+
+7.  Do they skip or substitute words when reading aloud? **(Yes/No)**
+
+8.  Do they read significantly slower than peers? **(Yes/No)**
+
+9.  Do they struggle with reading comprehension (understanding what they
+    read)? **(Yes/No)**
+
+**Section 4: Writing and Spelling Skills**
+
+10. Does the individual have poor spelling, often spelling the same word
+    differently in the same document? **(Yes/No)**
+
+11. Do they struggle with organizing thoughts in writing? **(Yes/No)**
+
+12. Do they frequently make letter reversals in writing (e.g., \"was\"
+    instead of \"saw\") beyond early childhood? **(Yes/No)**
+
+//Page2
+13. Do they have difficulty copying text accurately from a board or
+    book? **(Yes/No)**
+
+**Section 5: Memory and Processing**
+
+14. Do they have trouble remembering instructions or sequences?
+    **(Yes/No)**
+
+15. Do they struggle with recalling names, dates, or facts? **(Yes/No)**
+
+16. Do they have difficulty with left and right directions? **(Yes/No)**
+
+17. Do they often misplace or forget items (e.g., homework, keys)?
+    **(Yes/No)**
+
+**Section 6: Math and Numbers**
+
+18. Do they struggle with remembering multiplication tables or basic
+    arithmetic facts? **(Yes/No)**
+
+19. Do they have difficulty understanding word problems in math?
+    **(Yes/No)**
+
+20. Do they confuse mathematical symbols (e.g., +, -, x, ÷)?
+    **(Yes/No)**
+
+**Section 7: Attention and Emotional Impact**
+
+21. Do they experience frustration or anxiety related to reading and
+    writing? **(Yes/No)**
+
+22. Do they avoid reading aloud or writing assignments? **(Yes/No)**
+
+23. Do they show signs of low self-esteem due to academic struggles?
+    **(Yes/No)**
+
+**Scoring & Interpretation**
+
+-   **0-5 \"Yes\" responses** → Likely typical learning variation. No
+    immediate concerns.
+
+-   **6-10 \"Yes\" responses** → Possible mild difficulties. Consider
+    targeted support.
+
+-   **11-15 \"Yes\" responses** → Moderate risk of dyslexia. A
+    professional evaluation is recommended.
+
+-   **16+ \"Yes\" responses** → High risk of dyslexia. Formal assessment
+    by a specialist is strongly advised.
+
+
+//Page3
+**Section 1: Phonological Awareness (Sound Recognition & Manipulation)**
+
+1.  Do these words rhyme? *(Yes/No responses)*
+
+    -   Hat & Bat
+
+    -   House & Mouse
+
+    -   Dog & Car
+
+> 2.Can you tell what comes next in a simple pattern? *(Example: Red,
+> Blue, Red, Blue, \_\_?)*
+>
+> 3\. simple \"why\" or \"how\" questions? *(Example: \"Why do we wear a
+> coat in winter?\")*
+
+**1. Vocabulary Understanding**
+
+1.  **What is the opposite of \"hot\"?** *(Cold)*
+
+2.  **What is another word for \"happy\"?** *(Joyful, glad, excited)*
+
+3.  **Can you name three things that fly?** *(Examples: Bird, airplane,
+    butterfly)*
+
+4.  **Point to the picture that shows someone feeling sad.** *(Use a set
+    of images with different emotions.)*
+
+5.  **Which of these objects is a type of fruit?** *(Options: Chair,
+    Apple, Car)*
+
+**2. Sentence Comprehension**
+
+6.  **Which sentence makes sense?** *(Choose the correct one)*
+
+    -   \"The dog flew in the sky.\"
+
+    -   \"The dog ran in the park.\"
+
+7.  **Listen to these two sentences. Are they the same or different?**
+
+    -   \"The cat chased the mouse.\"
+
+    -   \"The mouse chased the cat.\"
+
+8.  **Can you complete this sentence?**
+
+    -   \"At night, the sky is \_\_\_\_.\" *(Expected answer: dark,
+        black, full of stars, etc.)*
+//Page4
+9.  **What will happen next?** *(Show an image of a boy holding an
+    umbrella while dark clouds appear.)*
+
+```{=html}
+<!-- -->
+```
+16. **Listen to this short story and answer:**
+
+-   \"Sara lost her teddy bear. She looked under her bed, but it wasn't
+    there. Then she checked the sofa and found it. Where was the teddy
+    bear?\" *(Answer: On the sofa.)*
+
+17. **Why do we wear a coat in the winter?** *(Expected answer: To stay
+    warm.)*
+
+18. **What should you do if you spill water on the floor?** *(Expected
+    answer: Clean it up.)*
+
+19. **What would you say if you accidentally bump into someone?**
+    *(Expected answer: \"Sorry\" or \"Excuse me.\")*
+
+20. **If you are hungry, what should you do?** *(Expected answer: Eat
+    food, ask for a snack, etc.)*
+
+**Section 1: Phonological Awareness (Sound Recognition & Manipulation)**
+
+1.  **What word do you get if you remove the first sound from \"cat\"?**
+    *(Expected: \"at\")*
+
+2.  **Which word rhymes with \"ball\"?** *(Options: tall, dog, run --
+    Expected: tall)*
+
+3.  **What is the first sound in \"sun\"?** *(Expected: \"s\")*
+
+4.  **Say \"frog\" backward.** *(Expected: \"gorf\")*
+
+**Section 2: Letter and Word Recognition**
+
+6.  **Can you find the word \"fish\" in this list?** *(dog, sun, fish,
+    car, rain)*
+
+7.  **Which of these words is the longest?** *(car, elephant, bat --
+    Expected: elephant)*
+
+**Section 3: Reading Comprehension**
+
+*(Read the sentence and answer the question.)*\
+11. **\"The boy ate an apple. What did he eat?\"** *(Expected: Apple.)*\
+12. **\"The cat climbed the tree because it was scared. Why did the cat
+climb?\"** *(Expected: It was scared.)*\
+13. **\"Sally bought five apples. She gave two to her friend. How many
+does she have left?\"** *(Expected: Three.)*\
+14. **\"John's shoes were too small, so he bought a bigger size. Why did
+John buy new shoes?\"** *(Expected: His shoes were too small.)*\
+
+//Page5
+15. **\"Tom forgot his umbrella. What might happen if it rains?\"**
+*(Expected: He will get wet.)*
+
+16. **Copy this sentence: \"The sky is blue.\"** *(Look for letter
+    reversals or spacing issues.)*
+
+17. **Write your name.** *(Assess if letters are reversed or
+    misshaped.)*
+
+```{=html}
+<!-- -->
+```
+21. **What comes next in this sequence?** *(Apple, banana, apple,
+    banana, \_\_\_? Expected: Apple.)*
+
+22. **Can you tell me what happens when you brush your teeth?** *(Check
+    for logical order in responses.)*

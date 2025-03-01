@@ -1,100 +1,138 @@
-/* Import a Google Font for better typography */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap');
 
-.container {
-    width: 640px;
-    margin: auto;
-    margin-top: 150px;
-    background: white;
-    color: #262626;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    border-radius: 15px; /* Increased border-radius */
-    padding: 40px 50px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
-    font-family: 'Poppins', sans-serif; /* Modern font */
-}
-
-.container hr {
-    height: 2px;
-    border: none;
-    background: #707070;
-    opacity: 0.3; /* Subtle line */
-}
-
-.container h2 {
-    font-size: 27px;
-    font-weight: 600; /* Slightly bolder */
-    text-align: center;
-    color: #553f9a; /* Matching the button color */
-}
-
-.container ul {
-    list-style: none;
-    padding: 0;
-}
-
-.container ul li {
+/* Remove the global body styling and create a wrapper for quiz-specific pages */
+.quiz-wrapper {
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
     display: flex;
     align-items: center;
-    height: 70px;
-    padding: 15px;
-    border: 1px solid #e0e0e0; /* Lighter border */
-    border-radius: 10px; /* Rounded corners */
-    margin-bottom: 20px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease; /* Smooth transition */
-    background: #f9f9f9; /* Light background */
+    justify-content: center;
 }
 
-.container ul li:hover {
-    background: #553f9a; /* Hover effect */
-    color: white;
-    border-color: #553f9a;
-    transform: translateY(-3px); /* Slight lift */
-    box-shadow: 0 5px 15px rgba(85, 63, 154, 0.3); /* Shadow on hover */
+.quiz-wrapper .container,
+.quiz-wrapper .rules-container,
+.quiz-wrapper .score-container,
+.quiz-wrapper .quiz-container {
+    width: 90%;
+    max-width: 800px;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    margin: 0 auto;
+    position: relative;
 }
 
-.container button {
-    margin: auto;
-    width: 250px;
-    height: 65px;
-    background: linear-gradient(135deg, #553f9a, #6a5acd); /* Gradient background */
-    color: #fff;
-    font-size: 25px;
-    font-weight: 500;
-    border-radius: 12px; /* More rounded */
-    cursor: pointer;
+.container, .rules-container, .score-container, .quiz-container {
+    color: #1B3A4B;
+    font-family: 'Open Sans', sans-serif;  /* More readable font */
+    line-height: 1.6;
+}
+
+.question-section h3 {
+    color: #2C5282;  /* Deep blue for section headers */
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.question-section p {
+    font-size: 1.2rem;
+    letter-spacing: 0.02em;  /* Slightly increased letter spacing */
+    margin-bottom: 2rem;
+}
+
+.answer-section {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.answer-section button {
+    min-width: 120px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
     border: none;
-    transition: all 0.3s ease; /* Smooth transition */
-    box-shadow: 0 5px 15px rgba(85, 63, 154, 0.3); /* Shadow */
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    font-weight: 600;
 }
 
-.container button:hover {
-    background: linear-gradient(135deg, #6a5acd, #553f9a); /* Reverse gradient on hover */
-    transform: translateY(-3px); /* Slight lift */
-    box-shadow: 0 8px 20px rgba(85, 63, 154, 0.4); /* Larger shadow on hover */
+.answer-section button:first-child {
+    background: linear-gradient(135deg, #4299E1, #2B6CB0);  /* Blue gradient */
 }
 
-.container .index {
-    margin: auto;
-    font-size: 18px;
-    color: #777; /* Subtle text color */
+.answer-section button:last-child {
+    background: linear-gradient(135deg, #63B3ED, #3182CE);  /* Lighter blue gradient */
 }
 
-.container .red {
-    background: crimson;
-    border-color: crimson;
+.answer-section button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(66, 153, 225, 0.4);
 }
 
-.container .green {
-    background: green;
-    border-color: green;
+.progress {
+    margin-top: 30px;
+    text-align: center;
+    color: #4A5568;
+    font-size: 1rem;
 }
 
-/* Optional: Add a subtle animation for the container */
+/* Update container backgrounds for better contrast */
+.rules-container {
+    background: linear-gradient(145deg, #ffffff, #f8faff);
+}
+
+.rules-container h2 {
+    color: #2C5282;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.rules-container p {
+    color: #2D3748;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.rules-container ul {
+    color: #2D3748;
+    font-size: 1.1rem;
+}
+
+.rules-container button, .score-container button {
+    background: linear-gradient(135deg, #4299E1, #2B6CB0);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+/* Update container backgrounds for better contrast */
+.score-container {
+    text-align: center;
+    background: linear-gradient(145deg, #ffffff, #f8faff);
+}
+
+.score-container h2 {
+    color: #2C5282;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Update container backgrounds for better contrast */
+.quiz-container {
+    background: linear-gradient(145deg, #ffffff, #f8faff);
+}
+
+/* Enhanced animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -106,6 +144,6 @@
     }
 }
 
-.container {
-    animation: fadeIn 0.5s ease-out; /* Fade-in animation */
+.container, .rules-container, .score-container, .quiz-container {
+    animation: fadeIn 0.5s ease-out;
 }
