@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Quiz.css';
 
 const Quiz = () => {
@@ -7,6 +8,7 @@ const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   const [showScore, setShowScore] = useState(false);
+  const navigate = useNavigate();
 
   const parentQuestions = [
     // Section 2: Early Childhood Development
@@ -130,7 +132,9 @@ const Quiz = () => {
   const calculateScore = () => {
     const yesCount = Object.values(answers).filter(answer => answer === 'YES').length;
     setShowScore(true);
-    // Score interpretation logic here
+    // Store parent's responses in localStorage or state management
+    localStorage.setItem('parentQuizCompleted', 'true');
+    localStorage.setItem('parentQuizScore', yesCount);
   };
 
   if (showRules1) {
@@ -167,9 +171,9 @@ const Quiz = () => {
     return (
       <div className="quiz-wrapper">
         <div className="score-container">
-          <h2>Assessment Complete</h2>
+          <h2>Parent Assessment Complete</h2>
           <p>Number of "Yes" responses: {Object.values(answers).filter(a => a === 'YES').length}</p>
-          {/* Add score interpretation based on the scoring rules */}
+          <button onClick={() => navigate('/student-quiz')}>Start Student Assessment</button>
         </div>
       </div>
     );

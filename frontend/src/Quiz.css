@@ -45,33 +45,43 @@
 
 .answer-section {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;  /* Allow options to wrap */
+    gap: 15px;        /* Consistent spacing */
     justify-content: center;
+    max-width: 600px; /* Maximum width for answers container */
+    margin: 0 auto;   /* Center the container */
+    padding: 10px;    /* Add some padding */
 }
 
 .answer-section button {
-    min-width: 120px;
-    padding: 15px 30px;
+    flex: 1 1 200px;  /* Allow buttons to grow but maintain minimum width */
+    min-width: 200px; /* Minimum width for buttons */
+    max-width: 300px; /* Maximum width for buttons */
+    padding: 15px 20px;
     font-size: 1.1rem;
     border: none;
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
     color: white;
-    font-weight: 600;
-}
-
-.answer-section button:first-child {
-    background: linear-gradient(135deg, #4299E1, #2B6CB0);  /* Blue gradient */
-}
-
-.answer-section button:last-child {
-    background: linear-gradient(135deg, #63B3ED, #3182CE);  /* Lighter blue gradient */
+    font-weight: 500;
+    background: linear-gradient(135deg, #4299E1, #2B6CB0);
+    margin: 5px;      /* Add margin for spacing */
+    word-wrap: break-word; /* Handle long text */
+    height: auto;     /* Allow height to adjust to content */
+    min-height: 50px; /* Minimum height */
 }
 
 .answer-section button:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(66, 153, 225, 0.4);
+    background: linear-gradient(135deg, #2B6CB0, #2C5282);
+}
+
+/* Remove the different styling for first/last child since all buttons should look the same */
+.answer-section button:first-child,
+.answer-section button:last-child {
+    background: linear-gradient(135deg, #4299E1, #2B6CB0);
 }
 
 .progress {

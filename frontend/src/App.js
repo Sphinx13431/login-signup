@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Login from './Login';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import Signup from './Signup';
 import Home from './Home';
 import Quiz from './Quiz'; // Corrected import statement
 import TestPage from './TestPage';
 import Profile from "./Profile";
+import StudentQuiz from './StudentQuiz';
 
 function App() {
   const [heroCount, setHeroCount] = useState(0);
@@ -36,9 +37,28 @@ function App() {
         <Route path='/quiz' element={<Quiz />} />
         <Route path='/testpage' element={<TestPage />} /> 
         <Route path="/profile" element={<Profile />} />{/* Added Quiz route */}
+        <Route path='/student-quiz' element={
+          <ProtectedRoute>
+            <StudentQuiz />
+          </ProtectedRoute>
+        } />
       </Routes>
     </BrowserRouter>
   );
 }
+
+// Protected route component to ensure parent quiz is completed
+const ProtectedRoute = ({ children }) => {
+  const navigate = useNavigate();
+  const isParentQuizCompleted = localStorage.getItem('parentQuizCompleted') === 'true';
+
+  React.useEffect(() => {
+    if (!isParentQuizCompleted) {
+      navigate('/quiz');
+    }
+  }, [navigate]);
+
+  return isParentQuizCompleted ? children : null;
+};
 
 export default App;
