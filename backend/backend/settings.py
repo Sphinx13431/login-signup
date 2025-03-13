@@ -171,3 +171,7 @@ REST_FRAMEWORK = {
 # Add these debug settings
 CORS_ALLOW_ALL_ORIGINS = True  # For development only
 DEBUG = True
+
+# Media files configuration
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

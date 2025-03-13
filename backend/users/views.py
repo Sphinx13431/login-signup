@@ -7,9 +7,16 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from django.middleware.csrf import get_token
 from django.views.decorators.csrf import ensure_csrf_cookie
-from .models import StudentAssessment  # Add this import
+# Update imports to include new models
+from .models import (
+    StudentAssessment,
+    LiteracyScores,
+    NumeracyScores,
+    HandwritingSubmission  # Add this line
+)
 import logging
 from django.views.decorators.http import require_POST
+from rest_framework.parsers import MultiPartParser, FormParser
 
 @api_view(['GET'])
 def api_root(request, format=None):
@@ -160,6 +167,94 @@ def save_student_assessment(request):
     except Exception as e:
         import traceback
         print("Error traceback:", traceback.format_exc())
+        return Response({
+            'status': 'error',
+            'message': str(e)
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@ensure_csrf_cookie  # Add this decorator
+def save_assessment_scores(request):
+    try:
+        data = request.data
+        print("Received assessment scores:", data)  # Debug print
+        
+        try:
+            # Get or create the latest scores
+            literacy_scores = LiteracyScores.objects.create(
+                phonological_awareness=data['section1_percentage'],
+                vocabulary_understanding=data['section2_percentage'],
+                sentence_comprehension=data['section3_percentage'],
+                logical_reasoning=data['section4_percentage'],
+                reading_comprehension=data['section5_percentage']
+            )
+
+            numeracy_scores = NumeracyScores.objects.create(
+                number_sense=data['section7_percentage'],
+                basic_arithmetic=data['section8_percentage'],
+                number_sequencing=data['section9_percentage'],
+                spatial_awareness=data['section10_percentage'],
+                memory_math=data['section11_percentage']
+            )
+
+            print("Scores saved successfully")  # Debug print
+
+            return Response({
+                'status': 'success',
+                'literacy_scores': [
+                    round(literacy_scores.phonological_awareness, 2),
+                    round(literacy_scores.vocabulary_understanding, 2),
+                    round(literacy_scores.sentence_comprehension, 2),
+                    round(literacy_scores.logical_reasoning, 2),
+                    round(literacy_scores.reading_comprehension, 2)
+                ],
+                'numeracy_scores': [
+                    round(numeracy_scores.number_sense, 2),
+                    round(numeracy_scores.basic_arithmetic, 2),
+                    round(numeracy_scores.number_sequencing, 2),
+                    round(numeracy_scores.spatial_awareness, 2),
+                    round(numeracy_scores.memory_math, 2)
+                ]
+            }, status=status.HTTP_201_CREATED)
+
+        except KeyError as e:
+            print(f"Missing field in data: {e}")
+            return Response({
+                'status': 'error',
+                'message': f'Missing required field: {str(e)}'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+    except Exception as e:
+        import traceback
+        print(f"Error saving scores: {str(e)}")
+        print(traceback.format_exc())  # Add detailed error traceback
+        return Response({
+            'status': 'error',
+            'message': str(e)
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@ensure_csrf_cookie
+def save_handwriting(request):
+    if not request.FILES.get('image'):
+        return Response({
+            'status': 'error',
+            'message': 'No image file provided'
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        # Create new handwriting submission
+        handwriting = HandwritingSubmission.objects.create(
+            image=request.FILES['image']
+        )
+
+        return Response({
+            'status': 'success',
+            'message': 'Handwriting image saved successfully',
+            'image_url': handwriting.image.url
+        })
+    except Exception as e:
+        print(f"Error saving handwriting: {str(e)}")
         return Response({
             'status': 'error',
             'message': str(e)
