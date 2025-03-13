@@ -1,0 +1,98 @@
+Questionaire
+
+Section 1: Phonological awareness(MCQ)
+
+1. Do these words rhyme? (Yes/No responses)
+	◦ Hat & Bat
+	◦ House & Mouse
+	◦ Dog & Car
+2. What word do you get if you remove the first sound from "cat"? (Expected: "at")
+3. Which word rhymes with "ball"? (Options: tall, dog, run – Expected: tall)
+4. What is the first sound in "sun"? (Expected: "s")
+5. Say "frog" backward. (Expected: "gorf")
+
+Section 2: Vocabulary Understanding(MCQ)
+
+1. What is the opposite of "hot"? (Cold)
+2. What is another word for "happy"? (Joyful, glad, excited)
+3. Can you name three things that fly? (Examples: Bird, airplane, butterfly)
+4. Point to the picture that shows someone feeling sad. (Use a set of images with different emotions.)
+5. Which of these objects is a type of fruit? (Options: Chair, Apple, Car)
+6. Can you find the word "fish" in this list? (dog, sun, fish, car, rain)
+7. Which of these words is the longest? (car, elephant, bat – Expected: elephant)
+
+
+Section 3: Sentence Comprehension(MCQ)
+
+6. Which sentence makes sense? (Choose the correct one)
+◦ "The dog flew in the sky."
+◦ "The dog ran in the park."
+7. Listen to these two sentences. Are they the same or different?
+◦ "The cat chased the mouse."
+◦ "The mouse chased the cat."
+8. Can you complete this sentence?
+◦ "At night, the sky is ____." (Expected answer: dark, black, full of stars, etc.)
+        
+Section 4: Logical Reasoning(MCQ)
+
+15. Can you tell what comes next in a simple pattern? (Example: Red, Blue, Red, Blue, __?)
+16. What comes next in this sequence? (Apple, banana, apple, banana, ___? Expected: Apple.)
+17. Why do we wear a coat in the winter? (Expected answer: To stay warm.)
+18. What should you do if you spill water on the floor? (Expected answer: Clean it up.)
+19. What would you say if you accidentally bump into someone? (Expected answer: "Sorry" or "Excuse me.")
+20. If you are hungry, what should you do? (Expected answer: Eat food, ask for a snack, etc.)
+
+Section 5: Reading Comprehension(MCQ)
+(Read the sentence and answer the question.)
+10."Sara lost her teddy bear. She looked under her bed, but it wasn’t there. Then she checked the sofa and found it. Where was the teddy bear?" (Answer: On the sofa.)
+11. "The boy ate an apple. What did he eat?" (Expected: Apple.)
+12. "The cat climbed the tree because it was scared. Why did the cat climb?" (Expected: It was scared.)
+13. "Sally bought five apples. She gave two to her friend. How many does she have left?" (Expected: Three.)
+14. "John’s shoes were too small, so he bought a bigger size. Why did John buy new shoes?" (Expected: His shoes were too small.)
+15. "Tom forgot his umbrella. What might happen if it rains?" (Expected: He will get wet.)
+
+
+Section 6: Handwriting(not an MCQ. Submit an image)
+
+Copy the following paragraph:
+"The little brown dog ran across the garden to chase a red ball. The wind blew softly, and the leaves danced in the air. Suddenly, a cat jumped onto the fence, watching the dog with curious eyes. The dog barked happily, wagging its tail, and the cat quickly disappeared behind the bushes."
+
+(Submit an image)
+
+
+Section 7:  Number Sense and Recognition(MCQ)
+
+1. Can you count from 1 to 20? (Observe if the child skips numbers or loses track.)
+2. Can you say the number that comes after 7? (Expected: 8)
+3. Can you say the number that comes before 12? (Expected: 11)
+4. Point to the biggest number: (Options: 5, 12, 3 – Expected: 12)
+5. If you have 3 apples and I give you 2 more, how many do you have? (Expected: 5)
+
+Section 8: Basic Arithmetic(MCQ)
+6. What is 2 + 3? (Expected: 5)
+7. What is 6 - 2? (Expected: 4)
+8. Can you double the number 4? (Expected: 8)
+9. What is half of 10? (Expected: 5)
+10. If you have 10 candies and give away 4, how many are left? (Expected: 6)
+
+Section 9: Number Sequencing and Patterns(MCQ)
+    11. Fill in the missing number: 2, 4, __, 8, 10 (Expected: 6)
+    12. What comes next: 5, 10, 15, __? (Expected: 20)
+    13. Which number is missing? 3, __, 9, 12 (Expected: 6)
+    14. Arrange these numbers in order from smallest to largest: (Options: 9, 2, 5 – Expected: 2, 5, 9)
+    
+    
+Section 10: Spatial Awareness & Number Alignment(MCQ)
+    16. Select the number three.(3,E,8)
+    17. Select the number six (6,9,P)
+    18. Can you match the number of objects to the correct numeral?(image path: ~/Desktop/django/login-signup/questionnaire/Star.jpg)(Expected answer:5)
+    19. Select the square. (Observe spatial alignment.)
+	there are four images in the directory ~/Desktop/django/login-signup/questionnaire/ and they are Square.jpg, Parallelogram.jpg, Rectangle.jpg, Diamond.jpg
+
+Section 11: Memory & Math-Related Language(MCQ prefered or blank)
+    21. What number is between 3 and 5? (Expected: 4)
+    22. If today is Monday, what day is tomorrow? (Expected: Tuesday)
+    23. Which is more: 3 dimes or 2 quarters? (Expected: 2 quarters)
+    24. If a pizza is cut into 4 pieces and you eat 2, how much is left? (Expected: 2 pieces or ½ of the pizza.)
+
+
