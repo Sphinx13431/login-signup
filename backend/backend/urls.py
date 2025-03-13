@@ -21,5 +21,5 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('', RedirectView.as_view(url='/api/login/', permanent=False)),  # Add root URL redirect
     path('admin/', admin.site.urls),
-    path('api/', include('users.urls')),
+    path('api/users/', include('users.urls')),  # Update the URL prefix
 ]

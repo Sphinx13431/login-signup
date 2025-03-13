@@ -167,3 +167,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
+
+# Add these debug settings
+CORS_ALLOW_ALL_ORIGINS = True  # For development only
+DEBUG = True

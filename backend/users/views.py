@@ -7,6 +7,9 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from django.middleware.csrf import get_token
 from django.views.decorators.csrf import ensure_csrf_cookie
+from .models import StudentAssessment  # Add this import
+import logging
+from django.views.decorators.http import require_POST
 
 @api_view(['GET'])
 def api_root(request, format=None):
@@ -26,7 +29,7 @@ def signup_view(request):
                 {'status': 'error', 'message': 'Email already registered'},
                 status=status.HTTP_400_BAD_REQUEST
             )
-        
+
         # Validate required fields
         required_fields = ['email', 'password', 'name']
         for field in required_fields:
@@ -35,7 +38,7 @@ def signup_view(request):
                     {'status': 'error', 'message': f'{field} is required'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
-        
+
         # Create user
         user = User.objects.create_user(
             username=data['email'],
@@ -43,15 +46,15 @@ def signup_view(request):
             password=data['password'],
             first_name=data['name']
         )
-        
+
         # Log the user in after signup
         login(request, user)
-        
+
         return Response({
             'status': 'success',
             'message': 'User created successfully'
         }, status=status.HTTP_201_CREATED)
-        
+
     except Exception as e:
         return Response({
             'status': 'error',
@@ -73,7 +76,7 @@ def login_view(request):
                 }
             })
         return Response(
-            {'status': 'error', 'message': 'Invalid credentials'}, 
+            {'status': 'error', 'message': 'Invalid credentials'},
             status=status.HTTP_401_UNAUTHORIZED
         )
     except Exception as e:
@@ -94,10 +97,75 @@ def logout_view(request):
     except Exception as e:
         print(f"Logout error: {str(e)}")  # Add debugging
         return Response(
-            {'status': 'error', 'message': str(e)}, 
+            {'status': 'error', 'message': str(e)},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
 @api_view(['GET'])
+@ensure_csrf_cookie
 def get_csrf_token(request):
-    return Response({'csrfToken': get_token(request)})
+    try:
+        token = get_token(request)
+        return Response({
+            'status': 'success',
+            'csrfToken': token
+        })
+    except Exception as e:
+        print(f"Error generating CSRF token: {str(e)}")  # Debug print
+        return Response({
+            'status': 'error',
+            'message': 'Failed to generate CSRF token'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['POST'])
+@ensure_csrf_cookie
+@require_POST
+def save_student_assessment(request):
+    print("Request received:", request.method)
+    print("Headers:", dict(request.headers))
+    print("User authenticated:", request.user.is_authenticated)
+
+    if not request.user.is_authenticated:
+        return Response({
+            'status': 'error',
+            'message': 'User not authenticated'
+        }, status=status.HTTP_401_UNAUTHORIZED)
+
+    try:
+        data = request.data
+        print("Received data:", data)  # Debug print
+
+        # Validate required fields
+        required_fields = ['studentName', 'age', 'grade', 'yesCount']
+        missing_fields = [field for field in required_fields if field not in data]
+        
+        if missing_fields:
+            return Response({
+                'status': 'error',
+                'message': f'Missing required fields: {", ".join(missing_fields)}'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create new assessment entry
+        assessment = StudentAssessment.objects.create(
+            student_name=data['studentName'],
+            age=int(data['age']),
+            grade=str(data['grade']),
+            yes_count=int(data['yesCount']),
+            submitted_by=request.user
+        )
+
+        print(f"Assessment created: {assessment}")  # Debug print
+
+        return Response({
+            'status': 'success',
+            'message': 'Assessment saved successfully',
+            'yes_count': assessment.yes_count
+        }, status=status.HTTP_201_CREATED)
+
+    except Exception as e:
+        import traceback
+        print("Error traceback:", traceback.format_exc())
+        return Response({
+            'status': 'error',
+            'message': str(e)
+        }, status=status.HTTP_400_BAD_REQUEST)

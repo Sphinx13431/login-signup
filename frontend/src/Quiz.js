@@ -2,8 +2,30 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Quiz.css';
 
+// Add this helper function at the top of the file, after the imports
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
 const Quiz = () => {
-  const [showRules1, setShowRules1] = useState(true);
+  const [showStudentForm, setShowStudentForm] = useState(true); // New state
+  const [studentInfo, setStudentInfo] = useState({ // New state
+    studentName: '',
+    age: '',
+    grade: ''
+  });
+  const [showRules1, setShowRules1] = useState(false);
   const [showRules2, setShowRules2] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -111,6 +133,12 @@ const Quiz = () => {
     }
   ];
 
+  const handleStudentInfoSubmit = (e) => {
+    e.preventDefault();
+    setShowStudentForm(false);
+    setShowRules1(true);
+  };
+
   const handleRules1Next = () => {
     setShowRules1(false);
     setShowRules2(true);
@@ -121,21 +149,119 @@ const Quiz = () => {
   };
 
   const handleAnswer = (answer) => {
-    setAnswers({ ...answers, [currentQuestion]: answer });
+    const newAnswers = { ...answers, [currentQuestion]: answer };
+    setAnswers(newAnswers);
+    
     if (currentQuestion < parentQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      calculateScore();
+      // If it's the last question, calculate score immediately
+      calculateScore(newAnswers);
     }
   };
 
-  const calculateScore = () => {
-    const yesCount = Object.values(answers).filter(answer => answer === 'YES').length;
-    setShowScore(true);
-    // Store parent's responses in localStorage or state management
-    localStorage.setItem('parentQuizCompleted', 'true');
-    localStorage.setItem('parentQuizScore', yesCount);
-  };
+  const calculateScore = async (finalAnswers) => {
+    const yesCount = Object.values(finalAnswers).filter(answer => answer === 'YES').length;
+
+    try {
+        // Update the base URL to include the API prefix
+        const baseURL = 'http://localhost:8000/api/users';
+        
+        // Get CSRF token first
+        const tokenResponse = await fetch(`${baseURL}/csrf-token/`, {
+            credentials: 'include'
+        });
+        
+        console.log('Token response status:', tokenResponse.status); // Debug line
+        
+        if (!tokenResponse.ok) {
+            throw new Error(`Failed to get CSRF token: ${tokenResponse.status}`);
+        }
+        
+        const tokenData = await tokenResponse.json();
+        const csrfToken = tokenData.csrfToken;
+
+        const response = await fetch(`${baseURL}/save-student-assessment/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                studentName: studentInfo.studentName,
+                age: parseInt(studentInfo.age),
+                grade: studentInfo.grade,
+                yesCount: yesCount
+            })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Server response:', errorText);
+            throw new Error(`Server error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Assessment saved successfully:', data);
+        setShowScore(true);
+        localStorage.setItem('parentQuizCompleted', 'true');
+        localStorage.setItem('parentQuizScore', yesCount.toString());
+
+    } catch (error) {
+        console.error('Error details:', error); // Enhanced error logging
+        alert(`Error saving assessment: ${error.message}`);
+    }
+};
+
+  if (showStudentForm) {
+    return (
+      <div className="quiz-wrapper">
+        <div className="form-container">
+          <h2>Student Information</h2>
+          <form onSubmit={handleStudentInfoSubmit}>
+            <div className="form-group">
+              <label>Student's Name:</label>
+              <input
+                type="text"
+                required
+                value={studentInfo.studentName}
+                onChange={(e) => setStudentInfo({
+                  ...studentInfo,
+                  studentName: e.target.value
+                })}
+              />
+            </div>
+            <div className="form-group">
+              <label>Age:</label>
+              <input
+                type="number"
+                required
+                value={studentInfo.age}
+                onChange={(e) => setStudentInfo({
+                  ...studentInfo,
+                  age: e.target.value
+                })}
+              />
+            </div>
+            <div className="form-group">
+              <label>Grade/Class:</label>
+              <input
+                type="text"
+                required
+                value={studentInfo.grade}
+                onChange={(e) => setStudentInfo({
+                  ...studentInfo,
+                  grade: e.target.value
+                })}
+              />
+            </div>
+            <button type="submit">Start Assessment</button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   if (showRules1) {
     return (
