@@ -21,16 +21,14 @@ def api_root(request, format=None):
 
 @api_view(['POST'])
 def signup_view(request):
-    data = request.data
     try:
-        # Check if user already exists
+        data = request.data
         if User.objects.filter(email=data['email']).exists():
             return Response(
                 {'status': 'error', 'message': 'Email already registered'},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Validate required fields
         required_fields = ['email', 'password', 'name']
         for field in required_fields:
             if not data.get(field):
@@ -39,7 +37,6 @@ def signup_view(request):
                     status=status.HTTP_400_BAD_REQUEST
                 )
 
-        # Create user
         user = User.objects.create_user(
             username=data['email'],
             email=data['email'],
@@ -47,15 +44,14 @@ def signup_view(request):
             first_name=data['name']
         )
 
-        # Log the user in after signup
         login(request, user)
-
         return Response({
             'status': 'success',
             'message': 'User created successfully'
         }, status=status.HTTP_201_CREATED)
 
     except Exception as e:
+        print(f"Signup error: {str(e)}")
         return Response({
             'status': 'error',
             'message': str(e)
@@ -63,8 +59,8 @@ def signup_view(request):
 
 @api_view(['POST'])  # This is correct - only allowing POST method
 def login_view(request):
-    data = request.data
     try:
+        data = request.data
         user = authenticate(username=data['email'], password=data['password'])
         if user is not None:
             login(request, user)
@@ -80,9 +76,10 @@ def login_view(request):
             status=status.HTTP_401_UNAUTHORIZED
         )
     except Exception as e:
+        print(f"Login error: {str(e)}")
         return Response(
             {'status': 'error', 'message': str(e)},
-            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            status=status.HTTP_400_BAD_REQUEST
         )
 
 @api_view(['POST'])
@@ -107,14 +104,12 @@ def get_csrf_token(request):
     try:
         token = get_token(request)
         return Response({
-            'status': 'success',
             'csrfToken': token
         })
     except Exception as e:
-        print(f"Error generating CSRF token: {str(e)}")  # Debug print
+        print(f"Error generating CSRF token: {str(e)}")
         return Response({
-            'status': 'error',
-            'message': 'Failed to generate CSRF token'
+            'error': 'Failed to generate CSRF token'
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])

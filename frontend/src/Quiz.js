@@ -164,23 +164,24 @@ const Quiz = () => {
     const yesCount = Object.values(finalAnswers).filter(answer => answer === 'YES').length;
 
     try {
-        // Update the base URL to include the API prefix
-        const baseURL = 'http://localhost:8000/api/users';
+        // Update baseURL to match new API structure
+        const baseURL = 'http://localhost:8000/api';
         
-        // Get CSRF token first
+        console.log('Fetching CSRF token...');
         const tokenResponse = await fetch(`${baseURL}/csrf-token/`, {
             credentials: 'include'
         });
         
-        console.log('Token response status:', tokenResponse.status); // Debug line
-        
         if (!tokenResponse.ok) {
+            console.error('Token response status:', tokenResponse.status);
             throw new Error(`Failed to get CSRF token: ${tokenResponse.status}`);
         }
         
         const tokenData = await tokenResponse.json();
+        console.log('Token received:', tokenData);
         const csrfToken = tokenData.csrfToken;
 
+        console.log('Sending assessment data...');
         const response = await fetch(`${baseURL}/save-student-assessment/`, {
             method: 'POST',
             headers: {
@@ -209,7 +210,7 @@ const Quiz = () => {
         localStorage.setItem('parentQuizScore', yesCount.toString());
 
     } catch (error) {
-        console.error('Error details:', error); // Enhanced error logging
+        console.error('Error details:', error);
         alert(`Error saving assessment: ${error.message}`);
     }
 };

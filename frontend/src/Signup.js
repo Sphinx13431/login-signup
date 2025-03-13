@@ -32,8 +32,13 @@ function Signup() {
     if(Object.keys(validationErrors).every(key => !validationErrors[key])) {
       try {
         const tokenResponse = await fetch('http://localhost:8000/api/csrf-token/', {
-          credentials: 'include',
+          credentials: 'include'
         });
+        
+        if (!tokenResponse.ok) {
+          throw new Error('Failed to get CSRF token');
+        }
+
         const { csrfToken } = await tokenResponse.json();
         
         const response = await fetch('http://localhost:8000/api/signup/', {
@@ -45,7 +50,13 @@ function Signup() {
           },
           body: JSON.stringify(values)
         });
-        
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error('Server response:', errorText);
+          throw new Error('Signup failed');
+        }
+
         const data = await response.json();
         if (data.status === 'success') {
           alert('Signup successful!');

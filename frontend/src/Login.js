@@ -22,13 +22,20 @@ function Login() {
   // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrors(validation(values));
-    if (errors.email === "" && errors.password === "") {
+    const validationErrors = validation(values);
+    setErrors(validationErrors);
+
+    if (!validationErrors.email && !validationErrors.password) {
       try {
         // First get CSRF token
         const tokenResponse = await fetch('http://localhost:8000/api/csrf-token/', {
-          credentials: 'include',
+          credentials: 'include'
         });
+        
+        if (!tokenResponse.ok) {
+          throw new Error('Failed to get CSRF token');
+        }
+
         const { csrfToken } = await tokenResponse.json();
         
         const response = await fetch('http://localhost:8000/api/login/', {
@@ -40,15 +47,22 @@ function Login() {
           },
           body: JSON.stringify(values)
         });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error('Server response:', errorText);
+          throw new Error('Login failed');
+        }
+
         const data = await response.json();
         if (data.status === 'Success') {
           navigate('/home');
         } else {
-          alert("Invalid credentials");
+          alert(data.message || "Invalid credentials");
         }
       } catch (err) {
-        console.error('Login failed:', err);
-        alert("Login failed");
+        console.error('Login error:', err);
+        alert(err.message || "Login failed");
       }
     }
   };
