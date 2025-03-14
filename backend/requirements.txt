@@ -3,3 +3,7 @@ Django>=5.1.4
 djangorestframework
 django-cors-headers
 pillow
+tensorflow
+pickle
+scikit-learn
+pandas
