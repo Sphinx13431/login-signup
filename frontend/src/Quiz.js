@@ -281,13 +281,7 @@ const Quiz = () => {
     return (
       <div className="quiz-wrapper">
         <div className="rules-container">
-          <h2>Scoring & Interpretation</h2>
-          <ul>
-            <li>0-5 "Yes" responses → Likely typical learning variation</li>
-            <li>6-10 "Yes" responses → Possible mild difficulties</li>
-            <li>11-15 "Yes" responses → Moderate risk of dyslexia</li>
-            <li>16+ "Yes" responses → High risk of dyslexia</li>
-          </ul>
+          <h2>Give answers based on the child's behaviour</h2>
           <button onClick={handleRules2Next}>Start Assessment</button>
         </div>
       </div>

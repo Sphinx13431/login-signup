@@ -523,11 +523,55 @@ const sendScoresToBackend = async (percentages) => {
         const data = await response.json();
         console.log('Literacy Scores:', data.literacy_scores);
         console.log('Numeracy Scores:', data.numeracy_scores);
+        // Store the prediction result in sectionScores
+        setSectionScores(prev => ({
+            ...prev,
+            prediction_result: data.prediction_result
+        }));
 
     } catch (error) {
         console.error('Error saving scores:', error);
     }
 };
+
+  if (showScore) {
+    return (
+      <div className="score-container">
+        <h2>Assessment Complete</h2>
+        
+        {/* Add diagnosis result section */}
+        <div className="diagnosis-result">
+          <h3>Result</h3>
+          <div className="diagnosis-text">
+            {sectionScores.prediction_result ? (
+              <p>{sectionScores.prediction_result}</p>
+            ) : (
+              <p>No learning difficulties detected</p>
+            )}
+          </div>
+        </div>
+
+        <div className="scores-grid">
+          {Object.entries(sectionScores).map(([section, score]) => (
+            // Only show scores for non-handwriting sections
+            section !== "Handwriting" && section !== "prediction_result" &&(
+              <div key={section} className="section-score">
+                <h3>{section}</h3>
+                <p>Score: {score.correct}/{score.total}</p>
+                <div className="progress-bar">
+                  <div 
+                    className="progress-fill" 
+                    style={{ width: `${(score.correct/score.total) * 100}%` }}
+                  ></div>
+                </div>
+              </div>
+            )
+          ))}
+        </div>
+        <button onClick={() => navigate('/home')}>Back to Home</button>
+      </div>
+    );
+  }
 
   const renderQuestion = (question) => {
     switch (question.type) {
@@ -614,24 +658,6 @@ const sendScoresToBackend = async (percentages) => {
         );
     }
   };
-
-  if (showScore) {
-    return (
-      <div className="score-container">
-        <h2>Assessment Complete</h2>
-        {Object.entries(sectionScores).map(([section, score]) => (
-            // Only show scores for non-handwriting sections
-            section !== "Handwriting" && (
-                <div key={section} className="section-score">
-                    <h3>{section}</h3>
-                    <p>Score: {score.correct}/{score.total}</p>
-                </div>
-            )
-        ))}
-        <button onClick={() => navigate('/home')}>Back to Home</button>
-      </div>
-    );
-  }
 
   const currentQ = questions[currentQuestion];
 

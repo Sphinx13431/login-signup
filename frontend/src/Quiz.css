@@ -131,6 +131,118 @@
     background: linear-gradient(145deg, #ffffff, #f8faff);
 }
 
+/* Enhanced score container styling */
+.score-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(145deg, #ffffff, #f8faff);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.score-container h2 {
+  color: #2C5282;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+/* Diagnosis result styling */
+.diagnosis-result {
+  background: linear-gradient(135deg, #EBF4FF, #E6FFFA);
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.diagnosis-result h3 {
+  color: #2B6CB0;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.diagnosis-text {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #2D3748;
+  padding: 1rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Grid layout for section scores */
+.scores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* Enhanced section score styling */
+.section-score {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.section-score:hover {
+  transform: translateY(-5px);
+}
+
+.section-score h3 {
+  color: #2C5282;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.section-score p {
+  color: #4A5568;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Progress bar styling */
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #EDF2F7;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4299E1, #2B6CB0);
+  transition: width 0.5s ease-out;
+}
+
+/* Back button styling */
+.score-container button {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #4299E1, #2B6CB0);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.score-container button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(66, 153, 225, 0.4);
+}
+
 .score-container h2 {
     color: #2C5282;
     font-size: 2rem;
