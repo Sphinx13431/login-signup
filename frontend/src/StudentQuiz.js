@@ -539,12 +539,34 @@ const sendScoresToBackend = async (percentages) => {
       <div className="score-container">
         <h2>Assessment Complete</h2>
         
-        {/* Add diagnosis result section */}
         <div className="diagnosis-result">
           <h3>Result</h3>
           <div className="diagnosis-text">
             {sectionScores.prediction_result ? (
-              <p>{sectionScores.prediction_result}</p>
+              <div>
+                {sectionScores.prediction_result.split(' ').map((condition, index) => (
+                  <div key={index} className="condition-result">
+                    <p>{condition}</p>
+                    <a 
+                      href={`/guidelines/${condition.toLowerCase()}.docx`} 
+                      download
+                      className="download-link"
+                      onClick={(e) => {
+                        // Check if file exists
+                        fetch(`/guidelines/${condition.toLowerCase()}.docx`)
+                          .then(response => {
+                            if (!response.ok) {
+                              e.preventDefault();
+                              alert('Guidelines file not available');
+                            }
+                          });
+                      }}
+                    >
+                      Download {condition} Guidelines
+                    </a>
+                  </div>
+                ))}
+              </div>
             ) : (
               <p>No learning difficulties detected</p>
             )}

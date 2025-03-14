@@ -461,3 +461,33 @@
   background: #cbd5e0;
   cursor: not-allowed;
 }
+
+.condition-result {
+  margin: 10px 0;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.condition-result p {
+  font-size: 1.4rem;
+  color: #2B6CB0;
+  margin-bottom: 10px;
+}
+
+.download-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #4299E1, #2B6CB0);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.download-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(66, 153, 225, 0.4);
+}
