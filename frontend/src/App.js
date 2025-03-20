@@ -5,17 +5,16 @@ import Signup from './Signup';
 import Home from './Home';
 import Quiz from './Quiz'; // Corrected import statement
 import TestPage from './TestPage';
-import Profile from "./Profile";
 import StudentQuiz from './StudentQuiz';
 
 function App() {
   const [heroCount, setHeroCount] = useState(0);
   const [playStatus, setPlayStatus] = useState(false);
 
-  const heroData = {
-    text1: "Welcome to the Homepage!",
-    text2: "Enjoy exploring the features."
-  };
+  // const heroData = {
+  //   text1: "Welcome to the Homepage!",
+  //   text2: "Enjoy exploring the features."
+  // };
 
   return (
     <BrowserRouter>
@@ -27,7 +26,7 @@ function App() {
           element={
             <Home 
               heroCount={heroCount} 
-              heroData={heroData} 
+              // heroData={heroData} 
               setHeroCount={setHeroCount} 
               setPlayStatus={setPlayStatus} 
               playStatus={playStatus} 
@@ -36,7 +35,6 @@ function App() {
         />
         <Route path='/quiz' element={<Quiz />} />
         <Route path='/testpage' element={<TestPage />} /> 
-        <Route path="/profile" element={<Profile />} />{/* Added Quiz route */}
         <Route path='/student-quiz' element={
           <ProtectedRoute>
             <StudentQuiz />

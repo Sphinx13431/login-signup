@@ -7,17 +7,17 @@ const TestPage = () => {
   return (
     <div className="test-container">
       <div className="test-card">
-        <h1 className="test-title">Test Page</h1>
+        {/* <h1 className="test-title">Test Page</h1> */}
         <p className="test-description">
-          Ready to challenge yourself? Take the test now or view your previous results.
+          Ready to challenge yourself? Take the test now 
         </p>
         <div className="button-container">
           <button className="test-button take-test" onClick={() => navigate("/quiz")}>
             Take Test
           </button>
-          <button className="test-button view-results" onClick={() => navigate("/test-results")}>
+          {/* <button className="test-button view-results" onClick={() => navigate("/test-results")}>
             View Results
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
