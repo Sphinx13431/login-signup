@@ -1,0 +1,8 @@
+
+Django>=5.1.4
+djangorestframework
+django-cors-headers
+pillow
+tensorflow
+scikit-learn
+pandas

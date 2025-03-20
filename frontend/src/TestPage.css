@@ -1,0 +1,95 @@
+/* Centering the card in the viewport */
+.test-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #add8e6; /* Light blue background */
+  font-family: "Poppins", sans-serif;
+}
+
+/* Card styling */
+.test-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Title styling */
+.test-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Description */
+.test-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Button container for spacing */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Button styles */
+.test-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+}
+
+/* Button hover effect */
+.test-button:hover {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Take Test Button */
+.take-test {
+  background: linear-gradient(90deg, #ff9800, #e65100);
+}
+
+.take-test:hover {
+  background: linear-gradient(90deg, #e65100, #bf360c);
+}
+
+/* View Results Button */
+.view-results {
+  background: linear-gradient(90deg, #ff9800, #e65100);
+}
+
+.view-results:hover {
+  background: linear-gradient(90deg, #e65100, #bf360c);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

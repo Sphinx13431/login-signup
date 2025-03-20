@@ -1,51 +1,226 @@
-.nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 40px 120px;
-    color: black;
-}
-.nav-logo{
-    border-radius: 50px;
-    padding: 10px 38px;
-    background: #fff;
-    color: #262626;
-}
-.nav-menu{
-    display: flex;
-    align-items: center;
-    list-style: none;
-    font-size: 18px;
-    gap: 18px;
-}
-.nav-test{
-    border-radius: 50px;
-    padding: 10px 38px;
-    background: #fff;
-    color: #262626;
-}
-.background{
-    height: 100%;
-    width: 100%;
-    float: left;
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: none;
-    position:fixed;
-    object-fit: cover;
-    z-index: -1;
-
-}
-.hero{ 
-    margin: 0px 120px;
-    margin-top: 270px;
-}
-.hero-text{
-    color: #fff;
-    font-size: 110px;
-    font-weight: 500;
-    line-height: 130px;
+/* Home Container */
+.home-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
+/* Background Container */
+.background-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Background Styling */
+.background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hero Styling */
+.hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+.hero-text {
+  margin-bottom: 20px;
+}
+
+.hero-explore {
+  margin-top: 20px;
+}
+
+.hero-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+@import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap');
+
+.hero-text {
+  background: linear-gradient(135deg, #ffcc80, #ff8a80);
+  color: #000;
+  padding: 24px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 650px;
+  margin: 20px auto;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 1.2s ease-in-out;
+  font-family: 'Comic Sans MS', sans-serif;
+  letter-spacing: 1px;
+  line-height: 1.8;
+}
+
+.hero-text h2 {
+  font-size: 32px;
+  margin-bottom: 12px;
+  font-weight: bold;
+  color: #ffeb3b;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-text p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add a fun bouncing animation to grab attention */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.hero-text h2 {
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+
+.hero-dot.orange {
+  background-color: orange;
+}
+
+.hero-play {
+  display: inline-block;
+  background: linear-gradient(45deg, #ff4081, #ffeb3b);
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  border: none;
+  outline: none;
+  animation: pulse 1.5s infinite;
+}
+
+/* Hover effect */
+.hero-play:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Bounce animation */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+
+/* .hero-play img {
+  width: 50px;
+  height: 50px;
+} */
+
+
+/* Navigation Bar Styling */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 120px;
+  position: relative;
+  z-index: 10;
+}
+
+/* All Navigation Items */
+.nav-logo,
+.nav-home a,
+.nav-profile a,
+.nav-test a,
+.nav-logout button {
+  border-radius: 50px;
+  padding: 10px 30px;
+  background: linear-gradient(135deg, #ff8c00, #e67300);
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(230, 115, 0, 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+/* Hover Effects */
+.nav-logo:hover,
+.nav-home a:hover,
+.nav-profile a:hover,
+.nav-test a:hover,
+.nav-logout button:hover {
+  background: linear-gradient(135deg, #e67300, #ff8c00);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(230, 115, 0, 0.4);
+}
+
+/* Logo Specific Styling */
+.nav-logo {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* Menu Layout */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Logout Button Special Styling */
+.nav-logout button {
+  background: linear-gradient(135deg, #ff8c00, #e67300);
+  box-shadow: 0 4px 15px rgba(230, 115, 0, 0.3);
+}
+
+.nav-logout button:hover {
+  background: linear-gradient(135deg, #e67300, #ff8c00);
+  box-shadow: 0 6px 20px rgba(230, 115, 0, 0.4);
+}
